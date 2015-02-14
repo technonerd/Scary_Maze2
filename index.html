@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="js/jquery.js"></script>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scary Game 2</title>
+	
+	<script type="text/javascript">
+        window.onload = function () {
+            var moveDiv = document.getElementById("movingDiv");
+            window.onkeydown = function(e) {
+                e.preventDefault();
+                if (!e){
+                    e = window.event;
+                }
+                var keyCode;
+                // pixel wise speed variable
+                var speed = 10;      
+				if (e.which) {
+                    keyCode = e.which;
+                } else {
+                    keyCode = e.keyCode;
+                }
+
+        //increment/decrement the top or left of the div based on the arrow key movements
+
+                if(keyCode === 37) {
+                    moveDiv.style.left = (parseInt(moveDiv.style.left, 10) - speed) + 'px';
+                } else if (keyCode === 38) {
+                   moveDiv.style.top = (parseInt(moveDiv.style.top, 10) - speed) + 'px';
+                } else if (keyCode === 39) {
+                   moveDiv.style.left = (parseInt(moveDiv.style.left, 10) + speed) + 'px';
+                } else if (keyCode === 40) {
+                    moveDiv.style.top = (parseInt(moveDiv.style.top, 10) + speed) + 'px';
+                }
+            };
+        };
+    </script>
+
+    <!-- CSS for moving Div -->
+
+    <style type="text/css">
+        #movingDiv {
+			width: 5px;
+            height: 5px;
+            position: absolute;
+            background-color: #FF0000;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- This div element will move , it has CSS style element in the header -->
+
+    <div id="movingDiv" style="top:0px;left:0px;">
+    </div>
+	
+</body>
+
+</html>
+
+</html>
