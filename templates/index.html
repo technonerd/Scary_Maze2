@@ -1,8 +1,55 @@
 <script src="/socket.io/socket.io.js"></script>
-
 <script>
-  var socket = io();
+var win = false;
+var socket = io();
+/* sends a msg to server that there is a winner  */
+var winner = function(){
+    win = true;
+    if (win){
+        console.log(win);
+        socket.emit('winner', { winner: "You have won" });
+    };
+    
+};
+/* end everything */
+var end_everything = function(){
+  console.log(win);
+  if (!win){
+//socket- connection
+   
+       //turn off game
+    
+       var d = document.getElementById("d");
+       d.setAttribute("style", "background-color:black;");
+
+       //face
+
+       //music 
+    } 
+    
+}
+/* loading a new level for only client side*/
+var new_level = function(){
+    //refresh winning status
+    win = false;
+    var d = document.getElementById("d");
+    d.setAttribute("style", "background-color:transparent;");
+
+}
+/* sends to server msg to restart for all clients */
+var restartmsg = function(){
+    socket.emit("restart", "restart");
+}
+//setInterval(end_everything);
+//console.log("here");
+socket.on("close",end_everything);
+//console.log("end");
 </script>
 
+<div id="d" width="500" height="500">
 
-Hello World!
+<center>Hello World!</center>
+
+</div>
+<input type="submit" onclick="winner()" value="Click Me"></input>
+<input type="submit" onclick="new_level();restartmsg();" value="Restart"></input>
