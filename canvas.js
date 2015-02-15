@@ -1,8 +1,8 @@
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 
-var lev = 1;
-var maxlev = 3;
+var lev = 2;
+var maxlev = 4;
 
 
 var update = function(){
@@ -17,6 +17,7 @@ var nextimg = function(){
     }
     return "level" + lev + ".png"; 
 };
+
 
 var makeMaze = function(ctx,img,imgsrc){
     return {
@@ -35,7 +36,7 @@ var makeMaze = function(ctx,img,imgsrc){
 }
 var img = new Image();
 var imgsrc = nextimg();
-
+ 
 c.addEventListener("onload", function(e){
     var maze = makeMaze(ctx,img,imgsrc);
     maze.draw();
@@ -48,7 +49,7 @@ c.addEventListener("mousemove", function(e){
     var rect = c.getBoundingClientRect();
     var mouseX = e.clientX - rect.left;
     var mouseY = e.clientY - rect.top;
-   
+    
     mouseX = mouseX-1;
     mouseY = mouseY-1;
     if (mouseX <1){
@@ -63,8 +64,5 @@ c.addEventListener("mousemove", function(e){
     if (p[0]==0 && p[1] ==0 && p[2]==0){
 	console.log("black ");
     }
-    
 });
-
-
 //window.requestAnimationFrame(update);
