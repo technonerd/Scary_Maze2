@@ -14,13 +14,15 @@
     <canvas id="c" width="1100" height="650">
     </canvas>
 	</span>
+  <audio id="player" src="static/au1.mp3" type="audio/mpeg" autoplay> </audio>
   </div>
   
 
-
-
 <script>
-
+function nextSong(){
+  alert("lev="+lev);
+  document.getElementById('player').src = 'static/au'+(lev-4)+'.mp3';
+}
 
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
@@ -130,6 +132,8 @@ c.addEventListener("mousemove", function(e){
 	maze.draw();
 	canmove=false;
 	document.getElementById("header").innerHTML = "Wait...";
+  alert("hi");
+  nextSong();
 	winner();
     }
 });
