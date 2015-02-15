@@ -23,6 +23,10 @@ function nextSong(){
   document.getElementById('player').src = 'static/au'+(lev-4)+'.mp3';
 }
 
+function face(){
+  var f=Math.floor((Math.random() * 10) + 1);
+  return "face"+f+".png";
+}
 var starts = 0;
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
@@ -138,7 +142,7 @@ c.addEventListener("mousemove", function(e){
 
     if (p[0]==0 && p[1] ==0 && p[2]==0 && canmove){
 	//console.log("black");
-        imgsrc="adorable.png";
+        imgsrc=face();
         maze = makeMaze(ctx,img,imgsrc);
         maze.draw();
         canmove=false;
