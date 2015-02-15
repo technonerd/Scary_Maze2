@@ -30,6 +30,7 @@ function nextSong(){
 var starts = 0;
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
+var canmove = false;
 var lev = 5;
 var maxlev = 10;
 <<<<<<< HEAD
@@ -68,12 +69,17 @@ var makeMaze = function(ctx,img,imgsrc){
 }
 var img = new Image();
 var imgsrc = nextimg();
- 
 c.addEventListener("onload", function(e){
     var maze = makeMaze(ctx,img,imgsrc);
     maze.draw();
 });
-var canmove=false;
+
+var face = function(){
+		 var img2 = new Image();
+		 //		 
+		 img2.src = "adorable.png";
+		 ctx.drawImage(img2,200,10);
+}
 console.log("false");
 c.addEventListener("click",function(e){
     update();
@@ -91,7 +97,6 @@ c.addEventListener("click",function(e){
     if (mouseY<1){
     mouseY++;
     }
-
     var po = ctx.getImageData(mouseX,mouseY,1,1).data;
     if (po[0]==200 && po[1] ==200 && po[2]==0){
         imgsrc=nextimg();
@@ -100,10 +105,13 @@ c.addEventListener("click",function(e){
             maze = makeMaze(ctx,img,imgsrc);
             maze.draw();
         }
+
+
     }
     else if (po[0]==0 && po[1] ==84 && po[2]==166){
         canmove=true;
         document.getElementById("header").innerHTML = "Go!";
+	nextSong();
     }
 });
 
@@ -125,14 +133,22 @@ c.addEventListener("mousemove", function(e){
     }
 
     var p = ctx.getImageData(mouseX,mouseY,1,1).data;
-    console.log("___");
+  
 
-    if (p[0]==0 && p[1] ==0 && p[2]==0 && canmove){
-	//console.log("black");
-        maze = makeMaze(ctx,img,imgsrc);
-        maze.draw();
-        canmove=false;
-        document.getElementById("header").innerHTML = "Try again - Click blue to proceed";
+//canmove = true;
+		 if (canmove && p[0]==0 && p[1] ==0 && p[2]==0){
+		 maze = makeMaze(ctx,img,imgsrc);
+		 
+		 maze.draw();
+		 
+		 document.getElementById("header").innerHTML = "Try again - Click blue to proceed";
+		document.getElementById('player').src = 'auscream.mp3';
+		 maze.draw();
+		 face();
+		 
+
+
+canmove = false;	 
     }
     if (p[0]==255 && p[1] ==0 && p[2]==0 && canmove){
 	console.log("win");
@@ -141,72 +157,23 @@ c.addEventListener("mousemove", function(e){
 	maze.draw();
 	canmove=false;
 	document.getElementById("header").innerHTML = "Wait...";
-  alert("hi");
+ 
   nextSong();
-	winner();
-    }
-});
-
-var win = false;
-var socket = io();
-var winnum = 0;
-/* sends a msg to server that there is a winner  */
-
-var winner = function(){
-    win = true;
-    if (win){
-        console.log(win);
-        socket.emit('winner', { winner: "You have won" });
-    };
-    
-};
-/* end everything */
-var end_everything = function(){
-  console.log("CLOSING=====" + win);
-  if (!win){
-//socket- connection
-
-       //turn off game
-      update();
-       //face
-      var img = new Image;
-      var t = setTimeOut(function(){
-	  ctx.drawImage(img,150,25);
-      }, 3000);
-       //music 
-      window.clearTimeout(t);
-      update();
-    } else{
-		 console.log("winner");
-    winnum++;
-  }
-
-   win = false;
-   console.log("CLOSING=====" + win);
-    
-}
-/* loading a new level for only client side*/
-socket.on("new_level", function(){
-//refresh winning status
-var d = document.getElementById("d");
-console.log("new LEVELS");
-d.setAttribute("style", "background-color:transparent;");
-win = false;
-
-
-});
-/* sends to server msg to restart for all clients */
-var restartmsg = function(){
-    socket.emit("restartmsg", "restartmsg");
-}
-
-socket.on("gamestart", function(){
-		 if (start ==0){
-		 socket.emit("start", "start");
 		 }
 });
-//setInterval(end_everything);
-socket.on("close",end_everything);
+
+
+var winner= function(){
+	console.log("win");
+		 update();
+		  imgsrc=nextimg();
+    var maze = makeMaze(ctx,img,imgsrc);
+    maze.draw();
+		 	document.getElementById("header").innerHTML = "Click blue to proceed."; 
+nextSong();
+}
+
+
 </script>
 <<<<<<< HEAD
 </html>
