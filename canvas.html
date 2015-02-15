@@ -20,7 +20,6 @@
 
 <script>
 function nextSong(){
-  alert("lev="+lev);
   document.getElementById('player').src = 'static/au'+(lev-4)+'.mp3';
 }
 
@@ -28,6 +27,7 @@ var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 var lev = 5;
 var maxlev = 10;
+
 var update = function(){
     ctx.fillStyle = "#000000";
     ctx.fillRect(0,0,c.getAttribute("width"),c.getAttribute("height"));
@@ -193,7 +193,4 @@ var restartmsg = function(){
 //setInterval(end_everything);
 socket.on("close",end_everything);
 </script>
-  </html>
-
-<input type="submit" onclick="winner()" value="Click Me"></input>
-<input type="submit" onclick="restartmsg();" value="Restart"></input>
+</html>
