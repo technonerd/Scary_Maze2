@@ -1,7 +1,7 @@
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
-var lev = 0;
-var maxlev = 1;
+var lev = 1;
+var maxlev = 2;
 /*
 var initialize = function(){
     ctx.fillStyle = "#FF0000";
