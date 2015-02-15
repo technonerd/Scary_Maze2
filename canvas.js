@@ -70,7 +70,6 @@ c.addEventListener("click",function(e){
     if (po[0]==200 && po[1] ==200 && po[2]==0){
         imgsrc=nextimg();
         update();
-        alert(imgsrc);
         if (lev>5){
             maze = makeMaze(ctx,img,imgsrc);
             maze.draw();
@@ -111,11 +110,11 @@ c.addEventListener("mousemove", function(e){
     }
     if (p[0]==255 && p[1] ==0 && p[2]==0 && canmove){
        console.log("win");
-       imgsrc=nextimg();
+       imgsrc="Loading.png";
        maze = makeMaze(ctx,img,imgsrc);
        maze.draw();
        canmove=false;
-       document.getElementById("header").innerHTML = "Click blue to proceed";
+       document.getElementById("header").innerHTML = "Wait...";
     }
 });
 //window.requestAnimationFrame(update);
