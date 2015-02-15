@@ -48,6 +48,10 @@ var nextimg = function(){
        return "level" + (lev-5) + ".png";
     }
 };
+
+var samepic=function(){
+   return "level" + (lev-5) + ".png";
+}
 var makeMaze = function(ctx,img,imgsrc){
     return {
     	x:10,
@@ -63,6 +67,14 @@ var makeMaze = function(ctx,img,imgsrc){
     	}
     }
 }
+
+var normref=function(){
+  imgsrc=samepic();
+  maze=makeMaze(ctx,img,imgsrc);
+  maze.draw();
+  document.getElementById("player").src = 'static/au'+(lev-5)+'.mp3';
+}
+
 var img = new Image();
 var imgsrc = nextimg();
  
@@ -130,8 +142,9 @@ c.addEventListener("mousemove", function(e){
         maze = makeMaze(ctx,img,imgsrc);
         maze.draw();
         canmove=false;
-        document.getElementById("player").src = "static/auscream.mp3";
-        
+        document.getElementById("player").src = "static/auscream.m4a";
+        document.getElementById("player").type = "audio/mp4";
+        window.setTimeout("normref()", 2500);
         document.getElementById("header").innerHTML = "Try again - Click blue to proceed";
     }
     if (p[0]==255 && p[1] ==0 && p[2]==0 && canmove){
