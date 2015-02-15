@@ -3,7 +3,7 @@ var ctx = c.getContext("2d");
 
 
 var lev = 0;
-var maxlev = 4;
+var maxlev = 10;
 
 
 var update = function(){
@@ -13,10 +13,14 @@ var update = function(){
 }
 var nextimg = function(){
     lev++;
-    if (lev > maxlev){
-	   lev = 1;
+    if (lev < 6){
+        document.getElementById("header").innerHTML = "Click on a rectangle to proceed";
+	   return "Start" + lev + ".png"; 
     }
-    return "level" + lev + ".png"; 
+    else{
+       return "level" + (lev-5) + ".png";
+    }
+    
 };
 
 
@@ -63,7 +67,16 @@ c.addEventListener("click",function(e){
     }
 
     var po = ctx.getImageData(mouseX,mouseY,1,1).data;
-    if (po[0]==0 && po[1] ==84 && po[2]==166){
+    if (po[0]==200 && po[1] ==200 && po[2]==0){
+        imgsrc=nextimg();
+        update();
+        alert(imgsrc);
+        if (lev>5){
+            maze = makeMaze(ctx,img,imgsrc);
+            maze.draw();
+        }
+    }
+    else if (po[0]==0 && po[1] ==84 && po[2]==166){
         canmove=true;
         document.getElementById("header").innerHTML = "Go!";
     }
@@ -94,17 +107,15 @@ c.addEventListener("mousemove", function(e){
         maze = makeMaze(ctx,img,imgsrc);
         maze.draw();
         canmove=false;
-        document.getElementById("header").innerHTML = "Try again - Click blue to start";
+        document.getElementById("header").innerHTML = "Try again - Click blue to proceed";
     }
     if (p[0]==255 && p[1] ==0 && p[2]==0 && canmove){
        console.log("win");
-       //alert(lev);
        imgsrc=nextimg();
        maze = makeMaze(ctx,img,imgsrc);
        maze.draw();
-       //alert(lev);
        canmove=false;
-       document.getElementById("header").innerHTML = "Click blue to start";
+       document.getElementById("header").innerHTML = "Click blue to proceed";
     }
 });
 //window.requestAnimationFrame(update);
