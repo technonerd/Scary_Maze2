@@ -53,10 +53,10 @@ c.addEventListener("mousemove", function(e){
     var mouseX = e.clientX - rect.left;
     var mouseY = e.clientY - rect.top;
     
-    context.beginPath();
-    context.rect(188, 50, 200, 100);
-    context.fillStyle = 'yellow';
-    context.fill();
+    ctx.beginPath();
+    ctx.rect(188, 50, 200, 100);
+    ctx.fillStyle = 'yellow';
+    ctx.fill();
 });
 
 
