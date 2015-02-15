@@ -1,0 +1,40 @@
+<!Doctype HTML >
+<html>
+<head>HAHAHHHAHHHAjajajajajajaja</head>
+<title></title>
+
+
+<body>
+<script>
+
+$("#slider").slider({
+    value : 75,
+    step  : 1,
+    range : 'min',
+    min   : 0,
+    max   : 100,
+    slide : function(){
+        var value = $("#slider").slider("value");
+        document.getElementById("audio-player").volume = (value / 100);
+    }
+});
+
+
+</script>
+
+
+<audio  controls="controls"><source src="onemusic.mp3" type="audio/mpeg";/></audio>
+
+<audio  controls="controls"><source src="twomusic.mp3" type="audio/mpeg";/></audio>
+
+<audio  controls ="controls"><source src="threemusic.mp3" type="audio/mpeg";/></audio>
+
+<audio  controls="controls"><source src="fourmusic.mp3" type="audio/mpeg"; /></audio>
+
+
+
+
+</body>
+
+
+</html>
