@@ -2,12 +2,6 @@ var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 var lev = 0;
 var maxlev = 1;
-/*
-var initialize = function(){
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(0,0,150,75);
-
-}*/
 
 var update = function(){
     ctx.fillStyle = "#000000";
@@ -21,7 +15,6 @@ var nextimg = function(){
     }
     return "level" + lev + ".png"; 
 };
-
 
 var makeMaze = function(ctx,img,imgsrc){
     return {
@@ -45,6 +38,7 @@ c.addEventListener("onload", function(e){
     var maze = makeMaze(ctx,img,imgsrc);
     maze.draw();
 });
+
 c.addEventListener("mousemove", function(e){
     update();
     var maze = makeMaze(ctx,img,imgsrc);
@@ -52,13 +46,10 @@ c.addEventListener("mousemove", function(e){
     var rect = c.getBoundingClientRect();
     var mouseX = e.clientX - rect.left;
     var mouseY = e.clientY - rect.top;
+    console.log(mouseX + ", " + mouseY);
     
-    ctx.beginPath();
-    ctx.rect(188, 50, 200, 100);
-    ctx.fillStyle = 'yellow';
-    ctx.fill();
+    
 });
-
 
 
 //window.requestAnimationFrame(update);
