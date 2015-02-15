@@ -26,10 +26,10 @@ var makeMaze = function(ctx,img,imgsrc){
 	img:img,
 	imgsrc:imgsrc,
 	draw:function(){
-	    ctx.drawImage(this.img,this.x,this.y);
 	    this.img.src ="static/" + this.imgsrc;
-	    this.img.border = "solid red 10px";
-	    console.log(this.img.src);
+	    ctx.drawImage(this.img,this.x,this.y);
+	  
+	    //this.img.border = "solid red 10px";
 	}
     }
 }
@@ -48,8 +48,21 @@ c.addEventListener("mousemove", function(e){
     var rect = c.getBoundingClientRect();
     var mouseX = e.clientX - rect.left;
     var mouseY = e.clientY - rect.top;
-    console.log(mouseX + ", " + mouseY);
-    
+   
+    mouseX = mouseX-1;
+    mouseY = mouseY-1;
+    if (mouseX <1){
+	mouseX++;
+    }
+    if (mouseY<1){
+	mouseY++;
+    }
+
+    var p = ctx.getImageData(mouseX,mouseY ,1,1).data;
+    console.log("___");
+    if (p[0]==0 && p[1] ==0 && p[2]==0){
+	console.log("black ");
+    }
     
 });
 
