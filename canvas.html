@@ -20,8 +20,12 @@
 
 <script>
 function nextSong(){
+<<<<<<< HEAD
+  document.getElementById('player').src = 'static/au'+(lev-4)+'.mp3';
+=======
   //alert("lev="+lev);
   document.getElementById('player').src = 'au'+(lev-4)+'.mp3';
+>>>>>>> b11f9dc6cb5a92112800ba531a69552bf9aa1bb2
 }
 var starts = 0;
 var c = document.getElementById("c");
@@ -29,7 +33,11 @@ var ctx = c.getContext("2d");
 var canmove = false;
 var lev = 5;
 var maxlev = 10;
+<<<<<<< HEAD
+
+=======
 var dir = "";
+>>>>>>> b11f9dc6cb5a92112800ba531a69552bf9aa1bb2
 var update = function(){
     ctx.fillStyle = "#000000";
     ctx.fillRect(0,0,c.getAttribute("width"),c.getAttribute("height"));
@@ -167,4 +175,8 @@ nextSong();
 
 
 </script>
+<<<<<<< HEAD
+</html>
+=======
   </html>
+>>>>>>> b11f9dc6cb5a92112800ba531a69552bf9aa1bb2

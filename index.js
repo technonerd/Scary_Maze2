@@ -1,9 +1,13 @@
 var express = require ("express")
 var app = express();
 var http = require ("http").Server(app);
-var io = require("socket.io")(http);
+var io = require("socket.io")("http");
+// <<<<<<< HEAD
+var im = require(app);
+// =======
 var path = require("path");
 app.use(express.static(__dirname + "/static/"));
+// >>>>>>> b11f9dc6cb5a92112800ba531a69552bf9aa1bb2
 var total = 0;
 var webpage = "canvas.html";
 var webdir = ""
