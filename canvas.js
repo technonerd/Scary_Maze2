@@ -1,6 +1,6 @@
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
-var lev = 1;
+var lev = 0;
 var maxlev = 3;
 
 var update = function(){
