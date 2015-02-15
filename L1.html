@@ -5,7 +5,48 @@
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Rock+Salt|Bangers">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="Scripts.js"></script>
-	
+	<script src="mov.js"></script>
+	<!--<script type="text/javascript">
+        window.onload = function () {
+            var moveDiv = document.getElementById("movingDiv");
+            window.onkeydown = function(e) {
+                e.preventDefault();
+                if (!e){
+                    e = window.event;
+                }
+                var keyCode;
+                // pixel wise speed variable
+                var speed = 10;      
+				if (e.which) {
+                    keyCode = e.which;
+                } else {
+                    keyCode = e.keyCode;
+                }
+
+        //increment/decrement the top or left of the div based on the arrow key movements
+
+                if(keyCode === 37) {
+                    moveDiv.style.left = (parseInt(moveDiv.style.left, 10) - speed) + 'px';
+                } else if (keyCode === 38) {
+                   moveDiv.style.top = (parseInt(moveDiv.style.top, 10) - speed) + 'px';
+                } else if (keyCode === 39) {
+                   moveDiv.style.left = (parseInt(moveDiv.style.left, 10) + speed) + 'px';
+                } else if (keyCode === 40) {
+                    moveDiv.style.top = (parseInt(moveDiv.style.top, 10) + speed) + 'px';
+                }
+            };
+			
+			function checkcollision() {
+				var imgd = ctx.getImageData(x, y, 15, 15);
+				var pix = imgd.data;
+				for (var i = 0; n = pix.length, i < n; i += 4) {
+					if (pix[i] == 0) {
+						collision = 1;
+					}
+				}
+			}
+        };
+    </script>-->
 	<style>
 	html{
 		height: 100%;
@@ -16,11 +57,12 @@
 		width: 100%;
 		background-color: black;
 	}
-	#movingDiv {
+	#movingDiv{
 		width: 5px;
         height: 5px;
         position: absolute;
         background-color: green;
+        z-index: 1;
     }
 	#l1start{
 		width:100px;
@@ -121,15 +163,15 @@
 		margin-top: 330px;
 		margin-left: 570px;
 	}
-	</style>
+	</style>-->
 </head>
 <body>
 
 	<div id="header">Multiplayer Scary Maze Game</div>
 
 	<div class="maze" style="width:100px;height:90%;"></div>
-	<div id="movingDiv"></div>
-	<div class="start" id="l1start"><br>Start</div>
+	<div id="movingDiv" style="top:590px;left:50px;"></div>
+	<div class="start" id="l1start"><br>Click Start</div>
 	<div class="maze" id="b2"></div>
 	<div class="maze" id="b3"></div>
 	<div class="maze" id="b4"></div>
