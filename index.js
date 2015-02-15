@@ -14,6 +14,8 @@ app.get("/", function(re,res){
 io.on("connection", function(socket){
     total++;
     console.log(total + " users connected");
+    // insert blocking here
+////////////////////////////////////
     socket.on('disconnect', function(){
 	total--;
 	console.log('a user disconnected');
@@ -25,19 +27,15 @@ io.on("connection", function(socket){
 	    console.log("closing");
 	}
     });
-    socket.on("restart", function(){
+    socket.on("restartmsg", function(){
 	onewinner=false;
-	io.emit("new_level","new_levelled");
+	io.emit("new_level","new_level");
 
 	console.log("restarted");
     });
 });
       
 http.listen(3000, function(){
-    console.log("listening on *:3000");
+    console.log("listening on port:3000");
 });
 
-
-
-
-//bugs to note -> automatic disconnection when window is not main window
