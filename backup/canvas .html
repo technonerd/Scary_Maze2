@@ -19,11 +19,11 @@
   
 
 <script>
-function nextSong(){
+var nextSong=function(){
   document.getElementById('player').src = 'static/au'+(lev-4)+'.mp3';
 }
 
-function face(){
+var face=function(){
   var f=Math.floor((Math.random() * 10) + 1);
   return "face"+f+".png";
 }
