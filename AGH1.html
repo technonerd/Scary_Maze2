@@ -1,0 +1,33 @@
+<html>
+  <style>
+    #c {border:solid black 5px;}
+
+		span {
+		cursor:url("dot.png"), auto;
+		}
+  </style>
+  
+  <script>
+	window.onload = function () {
+		var canvas = document.getElementById("c");
+		var ctx = c.getContext("2d");
+		var imgd = ctx.getImageData(x, y, 15, 15);
+		var pix = imgd.data;
+		for (var i = 0; n = pix.length, i < n; i += 4) {
+			if (pix[i] == 0) {
+				JOptionPane.showMessageDialog(frame, "NO");
+			}
+		}
+	}
+  
+  </script>
+  
+  <div style="text-align:center">
+  <span>
+    <canvas id="c" width="1250" height="650">
+    </canvas>
+	</span>
+  </div>
+  
+  <script src="canvas.js"></script>
+</html>
