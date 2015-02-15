@@ -1,6 +1,6 @@
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
-var lev = 1;
+var lev = 0;
 var maxlev = 1;
 /*
 var initialize = function(){
@@ -10,7 +10,7 @@ var initialize = function(){
 }*/
 
 var update = function(){
-    ctx.fillStyle = "black"
+    ctx.fillStyle = "#000000";
     ctx.fillRect(0,0,c.getAttribute("width"),c.getAttribute("height"));
  
 }
@@ -23,13 +23,13 @@ var nextimg = function(){
 };
 
 
-var makeMaze = function(ctx,img){
+var makeMaze = function(ctx,img,imgsrc){
     return {
 	x:10,
 	y:10,
 	ctx:ctx,
 	img:img,
-	imgsrc:nextimg(),
+	imgsrc:imgsrc,
 	draw:function(){
 	    ctx.drawImage(this.img,this.x,this.y);
 	    this.img.src ="static/" + this.imgsrc;
@@ -39,21 +39,24 @@ var makeMaze = function(ctx,img){
     }
 }
 var img = new Image();
+var imgsrc = nextimg();
 
 c.addEventListener("onload", function(e){
-    update();
-    var maze = makeMaze(ctx,img);
+    var maze = makeMaze(ctx,img,imgsrc);
     maze.draw();
 });
 c.addEventListener("mousemove", function(e){
     update();
-    var maze = makeMaze(ctx,img);
+    var maze = makeMaze(ctx,img,imgsrc);
     maze.draw();
-    //var rect = c.getBoundingClientRect();
-    //var mouseX = e.clientX - rect.left;
-    //var mouseY = e.clientY - rect.top;
+    var rect = c.getBoundingClientRect();
+    var mouseX = e.clientX - rect.left;
+    var mouseY = e.clientY - rect.top;
     
-    
+    context.beginPath();
+    context.rect(188, 50, 200, 100);
+    context.fillStyle = 'yellow';
+    context.fill();
 });
 
 
