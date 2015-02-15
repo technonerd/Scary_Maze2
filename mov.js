@@ -1,4 +1,11 @@
 window.onload = function () {
+	var elms = document.getElementsByTagName("*");
+	var n = elms.length;
+	for(var i = 0; i < n; i ++) {
+		if(window.getComputedStyle(elms[i]).cursor == "pointer") {
+			elms[i].style.cursor = "url(dot.jpg)";
+		}
+	}
     var moveDiv = document.getElementById("movingDiv");
     window.onkeydown = function(e) {
         e.preventDefault();
