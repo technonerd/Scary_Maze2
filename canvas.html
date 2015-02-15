@@ -14,20 +14,21 @@
     <canvas id="c" width="1100" height="650">
     </canvas>
 	</span>
-  <audio id="player" src="static/au1.mp3" type="audio/mpeg" autoplay> </audio>
+  <audio id="player" src="au1.mp3" type="audio/mpeg" autoplay> </audio>
   </div>
   
 
 <script>
 function nextSong(){
-  alert("lev="+lev);
-  document.getElementById('player').src = 'static/au'+(lev-4)+'.mp3';
+  //alert("lev="+lev);
+  document.getElementById('player').src = 'au'+(lev-4)+'.mp3';
 }
-
+var starts = 0;
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 var lev = 5;
 var maxlev = 10;
+var dir = "";
 var update = function(){
     ctx.fillStyle = "#000000";
     ctx.fillRect(0,0,c.getAttribute("width"),c.getAttribute("height"));
@@ -36,10 +37,10 @@ var nextimg = function(){
     lev++;
     if (lev < 6){
         document.getElementById("header").innerHTML = "Click on a rectangle to proceed";
-	   return "Start" + lev + ".png"; 
+	   return dir + "Start" + lev + ".png"; 
     }
     else{
-       return "level" + (lev-5) + ".png";
+       return dir+ "level" + (lev-5) + ".png";
     }
 };
 var makeMaze = function(ctx,img,imgsrc){
@@ -50,7 +51,7 @@ var makeMaze = function(ctx,img,imgsrc){
 	img:img,
 	imgsrc:imgsrc,
 	draw:function(){
-	    this.img.src ="static/" + this.imgsrc;
+	    this.img.src = this.imgsrc;
 	    ctx.drawImage(this.img,this.x,this.y);
 	  
 	    //this.img.border = "solid red 10px";
@@ -190,10 +191,13 @@ win = false;
 var restartmsg = function(){
     socket.emit("restartmsg", "restartmsg");
 }
+
+socket.on("gamestart", function(){
+		 if (start ==0){
+		 socket.emit("start", "start");
+		 }
+});
 //setInterval(end_everything);
 socket.on("close",end_everything);
 </script>
   </html>
-
-<input type="submit" onclick="winner()" value="Click Me"></input>
-<input type="submit" onclick="restartmsg();" value="Restart"></input>
