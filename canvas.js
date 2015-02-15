@@ -2,7 +2,7 @@ var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 
 
-var lev = 2;
+var lev = 3;
 var maxlev = 4;
 
 
