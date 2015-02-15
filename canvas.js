@@ -1,6 +1,6 @@
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
-var lev = 1;
+var lev = 0;
 var maxlev = 3;
 
 var update = function(){
@@ -18,8 +18,8 @@ var nextimg = function(){
 
 var makeMaze = function(ctx,img,imgsrc){
     return {
-	x:10,
-	y:10,
+	x:5,
+	y:35,
 	ctx:ctx,
 	img:img,
 	imgsrc:imgsrc,
